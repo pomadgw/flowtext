@@ -113,6 +113,7 @@ main = function () {
 }
 
 main_run = function () {
+    $('#content').focus();
     window.isCalled = false;
     $('#progress-texting').css("background-color", window.progressColor);
 
