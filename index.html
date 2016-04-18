@@ -137,8 +137,8 @@
             window.textData = JSON.parse(localStorage.getItem('data'));
             for (var key in window.textData) {
                 var $text = $('<li class="collection-item"><div>' + window.textData[key]['title'] +
-                    '<a href="#" data-title-text="' + key + '" class="secondary-content delete-text"><i class="material-icons">delete</i></a>' +
-                    '<a href="#" data-title-text="' + key +
+                    '<a href="#" title="Delete the text" data-title-text="' + key + '" class="secondary-content delete-text"><i class="material-icons">delete</i></a>' +
+                    '<a href="#" title="Open the text read-only" data-title-text="' + key +
                     '" class="secondary-content open-text"><i class="material-icons">open_in_browser</i></a>' +
                     '</div></li>');
                 $('#choose-data-collection').append($text);
