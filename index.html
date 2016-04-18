@@ -19,7 +19,6 @@
             <div class="nav-wrapper">
                 <!--                <a href="#" class="brand-logo">Flowtext</a>-->
                 <ul id="nav-mobile" class="right">
-                    <li id="text-title">Title</li>
                     <li><a href="#" id="btn-new-data">New Text</a>
                     </li>
                     <li><a href="#" id="btn-see-data">Open Text</a>
@@ -32,15 +31,18 @@
                 </ul>
             </div>
         </nav>
+
         <div class="progress">
-            <div class="determinate" id="progress-texting" style="width: 100%"></div>
+            <div class="determinate no-warning" id="progress-texting" style="width: 100%"></div>
         </div>
+
+        <h1 id="text-title" class="center-align grey-text text-lighten-3">Apparently, you don't type anything yet!</h1>
         <div class="row">
             <form class="col s12">
                 <div class="row">
                     <div class="input-fields col s12">
                         <label for="content">Type you text here</label>
-                        <textarea disabled="disabled" name="content" id="content"></textarea>
+                        <textarea disabled="disabled" name="content" id="content">Click "New Text"</textarea>
                     </div>
                 </div>
             </form>
@@ -54,23 +56,32 @@
             <div class="row">
                 <form class="col s12">
                     <div class="row">
-                        <div class="input-field col s6">
+                        <div class="input-field col s12">
                             <input id="title" type="text" class="validate">
                             <label for="title">Title</label>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s6">
-                            <input id="time" type="number" class="validate">
-                            <label for="time">Select time (seconds)</label>
+                        <div class="input-field col s12">
+                            <select name="time" id="time">
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="60">1 minute</option>
+                                <option value="300">5 minutes</option>
+                                <option value="600">10 minutes</option>
+                                <option value="900">15 minutes</option>
+                                <option value="1800">30 minutes</option>
+                                <option value="3600">1 hour</option>
+                            </select>
+                            <label for="time">Select time</label>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
         <div class="modal-footer">
-            <a href="#!" id="modal-submit" class=" modal-action modal-close waves-effect waves-green btn-flat">Start!</a>
-            <a href="#!" id="modal-cancel" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel!</a>
+            <a href="#!" id="modal-new-text-open-text" class=" modal-action modal-close waves-effect waves-green btn-flat">Open Existing Text</a>
+            <a href="#!" id="modal-new-text-submit" class=" modal-action modal-close waves-effect waves-green btn-flat">Start!</a>
+            <a href="#!" id="modal-new-text-cancel" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel!</a>
         </div>
     </div>
 
@@ -97,7 +108,9 @@
 
     <script src="js/jquery-2.2.3.js"></script>
     <script src="js/jquery.color.plus-names-2.1.2.js"></script>
+    <script src="js/jquery-ui.js"></script>
     <script type="text/javascript" src="js/bin/materialize.min.js"></script>
+    <script src="js/sha256.js"></script>
     <script>
         $('#modal-new-text').openModal();
         window.isTextBoxChanged = true;
@@ -123,7 +136,7 @@
             }
             window.textData = JSON.parse(localStorage.getItem('data'));
             for (var key in window.textData) {
-                var $text = $('<li class="collection-item"><div>' + key +
+                var $text = $('<li class="collection-item"><div>' + window.textData[key]['title'] +
                     '<a href="#" data-title-text="' + key + '" class="secondary-content delete-text"><i class="material-icons">delete</i></a>' +
                     '<a href="#" data-title-text="' + key +
                     '" class="secondary-content open-text"><i class="material-icons">open_in_browser</i></a>' +
@@ -139,6 +152,12 @@
         main = function () {
             loadData();
 
+
+            $(document).ready(function() {
+                $('select').material_select();
+            });
+            
+            
             $('#modal-new-text').openModal();
 
             $('#btn-new-data').click(function (e) {
@@ -149,36 +168,43 @@
                 $('#modal-choose-data').openModal();
                 return false;
             });
+
             $('#modal-choose-data .open-text').click(function (e) {
                 var key = $(this).attr('data-title-text');
-                
-                $('#content').val(window.textData[key]);
-                $('#text-title').text(key);
+
+                $('#content').val(window.textData[key]['content']);
+                $('#text-title').text(window.textData[key]['title']);
                 $('#modal-choose-data').closeModal();
-                
+
                 return false;
             });
 
             $('#modal-choose-data .delete-text').click(function (e) {
                 var key = $(this).attr('data-title-text');
-                
+
                 $('#delete-title').text(key);
                 $('#delete-title').attr('data-delete-title', key);
                 $('#modal-choose-data').closeModal();
                 $('#modal-confirmation-delete').openModal();
-                
+
                 return false;
+            });
+
+            $('#modal-new-text-open-text').click(function (e) {
+                $('#modal-choose-data').openModal();
             });
 
             $('#modal-confirmation-submit').click(function (e) {
                 var key = $('#delete-title').attr('data-delete-title');
-                
+
                 delete window.textData[key];
                 saveData();
+                
+                $('#choose-data-collection').empty();
                 loadData();
-                
+
                 $('#modal-confirmation-submit').closeModal();
-                
+
                 return true;
             });
 
@@ -186,7 +212,7 @@
                 return false;
             });
 
-            $('#modal-submit').click(function (e) {
+            $('#modal-new-text-submit').click(function (e) {
                 $('#content').removeAttr('disabled');
 
                 window.textTitle = $('#title').val();
@@ -210,10 +236,12 @@
                         alpha: 0
                     })
                 }, 4000);
+                $('#progress-texting').switchClass("no-warning", "warning", 4000, "easeInOutQuad");
             }
 
             window.resetAnimation = function () {
                 $('#content').css("color", $.Color($('#content'), 'color').alpha(1));
+                $('#progress-texting').removeClass("warning").addClass("no-warning");
                 window.isCalled = false;
 
                 console.log("Reset animating!");
@@ -274,9 +302,12 @@
                     clearInterval(window.timeOutHandle);
 
                     console.log(window.textData);
-                    window.textData[window.textTitle] = $('#content').val();
+                    var key = Sha256.hash(window.textTitle);
+                    window.textData[key] = {"title": window.textTitle, "content": $('#content').val()};
                     console.log(window.textData);
                     window.saveData();
+                    $('#choose-data-collection').empty();
+                    window.loadData();
 
                     console.log("stop!");
                 }

@@ -5,16 +5,13 @@
 
 @import "compass/reset";
 @import "materialize";
-
-body {
+ body {
     @extend .grey, .darken-3;
 }
-
 nav {
-    @extend .grey, .darken-3; 
+    @extend .grey, .darken-3;
     color: map-get($grey, 'lighten-3');
 }
-
 #content {
     @extend .flow-text;
     color: map-get($grey, 'lighten-3');
@@ -22,21 +19,27 @@ nav {
     height: 100vh;
     &, &:focus {
         border: 0 none #FFF;
-        outline:none;
+        outline: none;
         overflow: hidden;
     }
+}
+
+.no-warning {
+    @extend .grey, .lighten-3;
+}
+
+.warning {
+    @extend .red, .darken-1;
 }
 
 #done {
     display: none;
 }
-
 a.brand-logo {
     display: inline-block;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
 }
-
 #nav-mobile {
     li {
         display: inline-block;
@@ -44,3 +47,5 @@ a.brand-logo {
         margin-right: 0.5rem;
     }
 }
+
+/* increase the width, height and prevent vertical scroll! However, i don't recommend this, its better to turn on vertical scrolling. */
