@@ -182,7 +182,7 @@
             $('#modal-choose-data .delete-text').click(function (e) {
                 var key = $(this).attr('data-title-text');
 
-                $('#delete-title').text(key);
+                $('#delete-title').text(window.textData[key]['title']);
                 $('#delete-title').attr('data-delete-title', key);
                 $('#modal-choose-data').closeModal();
                 $('#modal-confirmation-delete').openModal();
