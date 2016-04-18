@@ -6,10 +6,20 @@
 @import "compass/reset";
 @import "materialize";
 
+#content {
+    @extend .grey-text, .text-darken-3, .flow-text;
+    resize: none;
+    height: 100vh;
+    &, &:focus {
+        border: 0 none #FFF;
+        outline:none;
+        overflow: hidden;
+    }
+}
+
 #done {
     display: none;
 }
-
 
 a.brand-logo {
     display: inline-block;

@@ -29,9 +29,9 @@
         <div class="row">
             <form class="col s12">
                 <div class="row">
-                    <div class="input-field col s12">
-                        <textarea name="text-data" id="text-data" class="materialize-textarea"></textarea>
+                    <div class="input-fields col s12">
                         <label for="textarea1">Type you text here</label>
+                        <textarea name="content" id="content"></textarea>
                     </div>
                 </div>
             </form>
@@ -44,11 +44,11 @@
     <script>
         window.isTextBoxChanged = true;
         window.timerToDelete = 0;
-        window.timeToEndWriting = 10;
+        window.timeToEndWriting = 60;
         window.currTime = 0;
         window.setTimerInNavBar = function(time) {
             minutes = Math.floor(time / 600);
-            seconds = Math.ceil((time / 10) % 600);
+            seconds = Math.ceil(Math.floor(time / 10) % 60);
             if (minutes < 10) {
                 minutes = "0" + minutes;
             }
@@ -62,26 +62,26 @@
             window.isCalled = false;
             window.animateFading = function() {
                 //console.log("Animating!");
-                $('#text-data').animate({
+                $('#content').animate({
                     color: $.Color({ alpha: 0 })
-                }, 3000);
+                }, 4000);
             }
             window.resetAnimation = function() {
-                $('#text-data').css("color", $.Color({ alpha: 1 }));
+                $('#content').css("color", $.Color($('#content'), 'color').alpha(1));
                 window.isCalled = false;
                 console.log("Reset animating!");
             }
             //clearInterval(timeoutHandle);
             window.textAreaHandle = window.setInterval(function() {
                 //console.log(isTextBoxChanged);
-                if (window.timerToDelete >= 20 && !window.isCalled) {
+                if (window.timerToDelete >= 10 && !window.isCalled) {
                     //console.log("Prepare animating!");
                     window.animateFading();
                     window.isCalled = true;
                 }
                 if (!window.isTextBoxChanged && window.timerToDelete >= 50) {
                     //console.log('Ouch!');
-                    $('#text-data').val('');
+                    $('#content').val('');
                     window.timerToDelete = 0;
                     window.resetAnimation();
                     window.currTime = 0;
@@ -89,12 +89,12 @@
                 window.timerToDelete++;
             }, 100);
             
-            $('#text-data').keypress(function(e) {
+            $('#content').keypress(function(e) {
                 //console.log(isTextBoxChanged);
                 window.isTextBoxChanged = true;
                 window.timerToDelete = 0;
                 //console.log(e.keyCode);
-                $('#text-data').stop();
+                $('#content').stop();
                 window.resetAnimation();
             });
             
@@ -108,8 +108,8 @@
                 if (window.currTime >= window.timeToEndWriting * 10) {
                     clearInterval(window.textAreaHandle);
                     clearInterval(window.changeFlagHandle);
-                    $('#text-data').stop();
-                    $('#text-data').attr('disabled','disabled');
+                    $('#content').stop();
+                    $('#content').attr('disabled','disabled');
                     $("#done").css('display', 'block');
                     window.resetAnimation();
                     clearInterval(window.timeOutHandle);
