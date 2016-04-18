@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Flowtext</title>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="css/print.css" media="print" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--[if IE]>
+    <link href="/css/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <![endif]-->
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo">Flowtext</a>
+                <ul id="nav-mobile" class="right">
+                    <li><span id="done">Done</span></li>
+                    <li><a href="#">Test</a></li>
+                    <li><span id="timer_minutes">00</span>:<span id="timer_seconds">00</span></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="progress">
+            <div class="determinate" id="progress-texting" style="width: 100%"></div>
+        </div>
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea name="text-data" id="text-data" class="materialize-textarea"></textarea>
+                        <label for="textarea1">Type you text here</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="js/jquery-2.2.3.js"></script>
+    <script src="js/jquery.color.plus-names-2.1.2.js"></script>
+    <script type="text/javascript" src="js/bin/materialize.min.js"></script>
+    <script>
+        window.isTextBoxChanged = true;
+        window.timerToDelete = 0;
+        window.timeToEndWriting = 10;
+        window.currTime = 0;
+        window.setTimerInNavBar = function(time) {
+            minutes = Math.floor(time / 600);
+            seconds = Math.ceil((time / 10) % 600);
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+            }
+            $('#timer_minutes').text(minutes);
+            $('#timer_seconds').text(seconds);
+        }
+        main = function() {
+            window.isCalled = false;
+            window.animateFading = function() {
+                //console.log("Animating!");
+                $('#text-data').animate({
+                    color: $.Color({ alpha: 0 })
+                }, 3000);
+            }
+            window.resetAnimation = function() {
+                $('#text-data').css("color", $.Color({ alpha: 1 }));
+                window.isCalled = false;
+                console.log("Reset animating!");
+            }
+            //clearInterval(timeoutHandle);
+            window.textAreaHandle = window.setInterval(function() {
+                //console.log(isTextBoxChanged);
+                if (window.timerToDelete >= 20 && !window.isCalled) {
+                    //console.log("Prepare animating!");
+                    window.animateFading();
+                    window.isCalled = true;
+                }
+                if (!window.isTextBoxChanged && window.timerToDelete >= 50) {
+                    //console.log('Ouch!');
+                    $('#text-data').val('');
+                    window.timerToDelete = 0;
+                    window.resetAnimation();
+                    window.currTime = 0;
+                }
+                window.timerToDelete++;
+            }, 100);
+            
+            $('#text-data').keypress(function(e) {
+                //console.log(isTextBoxChanged);
+                window.isTextBoxChanged = true;
+                window.timerToDelete = 0;
+                //console.log(e.keyCode);
+                $('#text-data').stop();
+                window.resetAnimation();
+            });
+            
+            window.changeFlagHandle = setInterval(function(){ isTextBoxChanged = false; }, 100);
+            window.timeOutHandle = setInterval(function() {
+                var remainingTime = window.timeToEndWriting * 10 - window.currTime;
+                $('#progress-texting').css({
+                    width: (remainingTime / (window.timeToEndWriting * 10) * 100) + '%'
+                });
+                setTimerInNavBar(remainingTime);
+                if (window.currTime >= window.timeToEndWriting * 10) {
+                    clearInterval(window.textAreaHandle);
+                    clearInterval(window.changeFlagHandle);
+                    $('#text-data').stop();
+                    $('#text-data').attr('disabled','disabled');
+                    $("#done").css('display', 'block');
+                    window.resetAnimation();
+                    clearInterval(window.timeOutHandle);
+                    console.log("stop!");
+                }
+                window.currTime++;
+            }, 100);
+        }
+        $(document).ready(main);
+    </script>
+</body>
+</html>
