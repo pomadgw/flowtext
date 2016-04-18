@@ -2,6 +2,10 @@ window.isTextBoxChanged = true;
 window.timerToDelete = 0;
 window.timeToEndWriting = 60;
 window.currTime = 0;
+window.textAreaTextColor = "#eeeeee";
+window.progressColor = "#bdbdbd";
+window.progressColorWarning = "#e91e63";
+
 window.setTimerInNavBar = function (time) {
     minutes = Math.floor(time / 600);
     seconds = Math.ceil(Math.floor(time / 10) % 60);
@@ -110,20 +114,22 @@ main = function () {
 
 main_run = function () {
     window.isCalled = false;
+    $('#progress-texting').css("background-color", window.progressColor);
 
     window.animateFading = function () {
         //console.log("Animating!");
         $('#content').animate({
-            color: $.Color({
-                alpha: 0
-            })
+            color: $.Color({ alpha: 0 })
         }, 4000);
-        $('#progress-texting').switchClass("no-warning", "warning", 4000, "easeInOutQuad");
+        $('#progress-texting').animate({
+            backgroundColor: window.progressColorWarning
+        }, 4000);
     }
 
     window.resetAnimation = function () {
-        $('#content').css("color", $.Color($('#content'), 'color').alpha(1));
-        $('#progress-texting').removeClass("warning").addClass("no-warning");
+        $('#progress-texting').stop();
+        $('#content').css("color", $.Color(window.textAreaTextColor));
+        $('#progress-texting').css("background-color", window.progressColor);
         window.isCalled = false;
 
         console.log("Reset animating!");

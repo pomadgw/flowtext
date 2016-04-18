@@ -24,12 +24,12 @@ nav {
     }
 }
 
-.no-warning {
-    @extend .grey, .lighten-3;
+.progress {
+    @extend .grey, .lighten-5;
 }
 
-.warning {
-    @extend .red, .darken-1;
+.no-warning {
+    background-color: #bdbdbd;
 }
 
 #done {
