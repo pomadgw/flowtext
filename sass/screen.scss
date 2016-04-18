@@ -6,8 +6,18 @@
 @import "compass/reset";
 @import "materialize";
 
+body {
+    @extend .grey, .darken-3;
+}
+
+nav {
+    @extend .grey, .darken-3; 
+    color: map-get($grey, 'lighten-3');
+}
+
 #content {
-    @extend .grey-text, .text-darken-3, .flow-text;
+    @extend .flow-text;
+    color: map-get($grey, 'lighten-3');
     resize: none;
     height: 100vh;
     &, &:focus {

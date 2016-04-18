@@ -148,12 +148,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* line 378, ../sass/components/_color.scss */
-.materialize-red.darken-3 {
+.materialize-red.darken-3, body.materialize-red, nav.materialize-red {
   background-color: #a21318 !important;
 }
 
 /* line 381, ../sass/components/_color.scss */
-.materialize-red-text.text-darken-3, .materialize-red-text#content {
+.materialize-red-text.text-darken-3 {
   color: #a21318 !important;
 }
 
@@ -248,12 +248,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* line 378, ../sass/components/_color.scss */
-.red.darken-3 {
+.red.darken-3, body.red, nav.red {
   background-color: #C62828 !important;
 }
 
 /* line 381, ../sass/components/_color.scss */
-.red-text.text-darken-3, .red-text#content {
+.red-text.text-darken-3 {
   color: #C62828 !important;
 }
 
@@ -388,12 +388,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* line 378, ../sass/components/_color.scss */
-.pink.darken-3 {
+.pink.darken-3, body.pink, nav.pink {
   background-color: #ad1457 !important;
 }
 
 /* line 381, ../sass/components/_color.scss */
-.pink-text.text-darken-3, .pink-text#content {
+.pink-text.text-darken-3 {
   color: #ad1457 !important;
 }
 
@@ -528,12 +528,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* line 378, ../sass/components/_color.scss */
-.purple.darken-3 {
+.purple.darken-3, body.purple, nav.purple {
   background-color: #6a1b9a !important;
 }
 
 /* line 381, ../sass/components/_color.scss */
-.purple-text.text-darken-3, .purple-text#content {
+.purple-text.text-darken-3 {
   color: #6a1b9a !important;
 }
 
@@ -668,12 +668,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* line 378, ../sass/components/_color.scss */
-.deep-purple.darken-3 {
+.deep-purple.darken-3, body.deep-purple, nav.deep-purple {
   background-color: #4527a0 !important;
 }
 
 /* line 381, ../sass/components/_color.scss */
-.deep-purple-text.text-darken-3, .deep-purple-text#content {
+.deep-purple-text.text-darken-3 {
   color: #4527a0 !important;
 }
 
@@ -808,12 +808,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* line 378, ../sass/components/_color.scss */
-.indigo.darken-3 {
+.indigo.darken-3, body.indigo, nav.indigo {
   background-color: #283593 !important;
 }
 
 /* line 381, ../sass/components/_color.scss */
-.indigo-text.text-darken-3, .indigo-text#content {
+.indigo-text.text-darken-3 {
   color: #283593 !important;
 }
 
@@ -948,12 +948,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* line 378, ../sass/components/_color.scss */
-.blue.darken-3 {
+.blue.darken-3, body.blue, nav.blue {
   background-color: #1565C0 !important;
 }
 
 /* line 381, ../sass/components/_color.scss */
-.blue-text.text-darken-3, .blue-text#content {
+.blue-text.text-darken-3 {
   color: #1565C0 !important;
 }
 
@@ -1088,12 +1088,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* line 378, ../sass/components/_color.scss */
-.light-blue.darken-3 {
+.light-blue.darken-3, body.light-blue, nav.light-blue {
   background-color: #0277bd !important;
 }
 
 /* line 381, ../sass/components/_color.scss */
-.light-blue-text.text-darken-3, .light-blue-text#content {
+.light-blue-text.text-darken-3 {
   color: #0277bd !important;
 }
 
@@ -1228,12 +1228,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* line 378, ../sass/components/_color.scss */
-.cyan.darken-3 {
+.cyan.darken-3, body.cyan, nav.cyan {
   background-color: #00838f !important;
 }
 
 /* line 381, ../sass/components/_color.scss */
-.cyan-text.text-darken-3, .cyan-text#content {
+.cyan-text.text-darken-3 {
   color: #00838f !important;
 }
 
@@ -1368,12 +1368,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* line 378, ../sass/components/_color.scss */
-.teal.darken-3 {
+.teal.darken-3, body.teal, nav.teal {
   background-color: #00695c !important;
 }
 
 /* line 381, ../sass/components/_color.scss */
-.teal-text.text-darken-3, .teal-text#content {
+.teal-text.text-darken-3 {
   color: #00695c !important;
 }
 
@@ -1508,12 +1508,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* line 378, ../sass/components/_color.scss */
-.green.darken-3 {
+.green.darken-3, body.green, nav.green {
   background-color: #2E7D32 !important;
 }
 
 /* line 381, ../sass/components/_color.scss */
-.green-text.text-darken-3, .green-text#content {
+.green-text.text-darken-3 {
   color: #2E7D32 !important;
 }
 
@@ -1648,12 +1648,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* line 378, ../sass/components/_color.scss */
-.light-green.darken-3 {
+.light-green.darken-3, body.light-green, nav.light-green {
   background-color: #558b2f !important;
 }
 
 /* line 381, ../sass/components/_color.scss */
-.light-green-text.text-darken-3, .light-green-text#content {
+.light-green-text.text-darken-3 {
   color: #558b2f !important;
 }
 
@@ -1788,12 +1788,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* line 378, ../sass/components/_color.scss */
-.lime.darken-3 {
+.lime.darken-3, body.lime, nav.lime {
   background-color: #9e9d24 !important;
 }
 
 /* line 381, ../sass/components/_color.scss */
-.lime-text.text-darken-3, .lime-text#content {
+.lime-text.text-darken-3 {
   color: #9e9d24 !important;
 }
 
@@ -1928,12 +1928,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* line 378, ../sass/components/_color.scss */
-.yellow.darken-3 {
+.yellow.darken-3, body.yellow, nav.yellow {
   background-color: #f9a825 !important;
 }
 
 /* line 381, ../sass/components/_color.scss */
-.yellow-text.text-darken-3, .yellow-text#content {
+.yellow-text.text-darken-3 {
   color: #f9a825 !important;
 }
 
@@ -2068,12 +2068,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* line 378, ../sass/components/_color.scss */
-.amber.darken-3 {
+.amber.darken-3, body.amber, nav.amber {
   background-color: #ff8f00 !important;
 }
 
 /* line 381, ../sass/components/_color.scss */
-.amber-text.text-darken-3, .amber-text#content {
+.amber-text.text-darken-3 {
   color: #ff8f00 !important;
 }
 
@@ -2208,12 +2208,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* line 378, ../sass/components/_color.scss */
-.orange.darken-3 {
+.orange.darken-3, body.orange, nav.orange {
   background-color: #ef6c00 !important;
 }
 
 /* line 381, ../sass/components/_color.scss */
-.orange-text.text-darken-3, .orange-text#content {
+.orange-text.text-darken-3 {
   color: #ef6c00 !important;
 }
 
@@ -2348,12 +2348,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* line 378, ../sass/components/_color.scss */
-.deep-orange.darken-3 {
+.deep-orange.darken-3, body.deep-orange, nav.deep-orange {
   background-color: #d84315 !important;
 }
 
 /* line 381, ../sass/components/_color.scss */
-.deep-orange-text.text-darken-3, .deep-orange-text#content {
+.deep-orange-text.text-darken-3 {
   color: #d84315 !important;
 }
 
@@ -2488,12 +2488,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* line 378, ../sass/components/_color.scss */
-.brown.darken-3 {
+.brown.darken-3, body.brown, nav.brown {
   background-color: #4e342e !important;
 }
 
 /* line 381, ../sass/components/_color.scss */
-.brown-text.text-darken-3, .brown-text#content {
+.brown-text.text-darken-3 {
   color: #4e342e !important;
 }
 
@@ -2588,12 +2588,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* line 378, ../sass/components/_color.scss */
-.blue-grey.darken-3 {
+.blue-grey.darken-3, body.blue-grey, nav.blue-grey {
   background-color: #37474f !important;
 }
 
 /* line 381, ../sass/components/_color.scss */
-.blue-grey-text.text-darken-3, .blue-grey-text#content {
+.blue-grey-text.text-darken-3 {
   color: #37474f !important;
 }
 
@@ -2608,102 +2608,102 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* line 370, ../sass/components/_color.scss */
-.grey {
+.grey, body, nav {
   background-color: #9e9e9e !important;
 }
 
 /* line 373, ../sass/components/_color.scss */
-.grey-text, #content {
+.grey-text {
   color: #9e9e9e !important;
 }
 
 /* line 378, ../sass/components/_color.scss */
-.grey.lighten-5 {
+.grey.lighten-5, body.lighten-5, nav.lighten-5 {
   background-color: #fafafa !important;
 }
 
 /* line 381, ../sass/components/_color.scss */
-.grey-text.text-lighten-5, .text-lighten-5#content {
+.grey-text.text-lighten-5 {
   color: #fafafa !important;
 }
 
 /* line 378, ../sass/components/_color.scss */
-.grey.lighten-4 {
+.grey.lighten-4, body.lighten-4, nav.lighten-4 {
   background-color: #f5f5f5 !important;
 }
 
 /* line 381, ../sass/components/_color.scss */
-.grey-text.text-lighten-4, .text-lighten-4#content {
+.grey-text.text-lighten-4 {
   color: #f5f5f5 !important;
 }
 
 /* line 378, ../sass/components/_color.scss */
-.grey.lighten-3 {
+.grey.lighten-3, body.lighten-3, nav.lighten-3 {
   background-color: #eeeeee !important;
 }
 
 /* line 381, ../sass/components/_color.scss */
-.grey-text.text-lighten-3, .text-lighten-3#content {
+.grey-text.text-lighten-3 {
   color: #eeeeee !important;
 }
 
 /* line 378, ../sass/components/_color.scss */
-.grey.lighten-2 {
+.grey.lighten-2, body.lighten-2, nav.lighten-2 {
   background-color: #e0e0e0 !important;
 }
 
 /* line 381, ../sass/components/_color.scss */
-.grey-text.text-lighten-2, .text-lighten-2#content {
+.grey-text.text-lighten-2 {
   color: #e0e0e0 !important;
 }
 
 /* line 378, ../sass/components/_color.scss */
-.grey.lighten-1 {
+.grey.lighten-1, body.lighten-1, nav.lighten-1 {
   background-color: #bdbdbd !important;
 }
 
 /* line 381, ../sass/components/_color.scss */
-.grey-text.text-lighten-1, .text-lighten-1#content {
+.grey-text.text-lighten-1 {
   color: #bdbdbd !important;
 }
 
 /* line 378, ../sass/components/_color.scss */
-.grey.darken-1 {
+.grey.darken-1, body.darken-1, nav.darken-1 {
   background-color: #757575 !important;
 }
 
 /* line 381, ../sass/components/_color.scss */
-.grey-text.text-darken-1, .text-darken-1#content {
+.grey-text.text-darken-1 {
   color: #757575 !important;
 }
 
 /* line 378, ../sass/components/_color.scss */
-.grey.darken-2 {
+.grey.darken-2, body.darken-2, nav.darken-2 {
   background-color: #616161 !important;
 }
 
 /* line 381, ../sass/components/_color.scss */
-.grey-text.text-darken-2, .text-darken-2#content {
+.grey-text.text-darken-2 {
   color: #616161 !important;
 }
 
 /* line 378, ../sass/components/_color.scss */
-.grey.darken-3 {
+.grey.darken-3, body, nav {
   background-color: #424242 !important;
 }
 
 /* line 381, ../sass/components/_color.scss */
-.grey-text.text-darken-3, #content {
+.grey-text.text-darken-3 {
   color: #424242 !important;
 }
 
 /* line 378, ../sass/components/_color.scss */
-.grey.darken-4 {
+.grey.darken-4, body.darken-4, nav.darken-4 {
   background-color: #212121 !important;
 }
 
 /* line 381, ../sass/components/_color.scss */
-.grey-text.text-darken-4, .text-darken-4#content {
+.grey-text.text-darken-4 {
   color: #212121 !important;
 }
 
@@ -9123,31 +9123,37 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
     margin-bottom: 5em;
   }
 }
-/* line 9, ../sass/screen.scss */
+/* line 13, ../sass/screen.scss */
+nav {
+  color: #eeeeee;
+}
+
+/* line 18, ../sass/screen.scss */
 #content {
+  color: #eeeeee;
   resize: none;
   height: 100vh;
 }
-/* line 13, ../sass/screen.scss */
+/* line 23, ../sass/screen.scss */
 #content, #content:focus {
   border: 0 none #FFF;
   outline: none;
   overflow: hidden;
 }
 
-/* line 20, ../sass/screen.scss */
+/* line 30, ../sass/screen.scss */
 #done {
   display: none;
 }
 
-/* line 24, ../sass/screen.scss */
+/* line 34, ../sass/screen.scss */
 a.brand-logo {
   display: inline-block;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
 }
 
-/* line 31, ../sass/screen.scss */
+/* line 41, ../sass/screen.scss */
 #nav-mobile li {
   display: inline-block;
   margin-left: 0.5rem;

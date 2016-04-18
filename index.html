@@ -1,25 +1,34 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>Flowtext</title>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
     <link href="css/print.css" media="print" rel="stylesheet" type="text/css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!--[if IE]>
     <link href="/css/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
     <![endif]-->
 </head>
+
 <body>
     <div class="container">
-        <nav>
+        <nav class="z-depth-0">
             <div class="nav-wrapper">
-                <a href="#" class="brand-logo">Flowtext</a>
+                <!--                <a href="#" class="brand-logo">Flowtext</a>-->
                 <ul id="nav-mobile" class="right">
-                    <li><span id="done">Done</span></li>
-                    <li><a href="#">Test</a></li>
-                    <li><span id="timer_minutes">00</span>:<span id="timer_seconds">00</span></li>
+                    <li id="text-title">Title</li>
+                    <li><a href="#" id="btn-new-data">New Text</a>
+                    </li>
+                    <li><a href="#" id="btn-see-data">Open Text</a>
+                    </li>
+                    <li id="title-text"></li>
+                    <li><span id="done">Done</span>
+                    </li>
+                    <li><span id="timer_minutes">00</span>:<span id="timer_seconds">00</span>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -30,23 +39,72 @@
             <form class="col s12">
                 <div class="row">
                     <div class="input-fields col s12">
-                        <label for="textarea1">Type you text here</label>
-                        <textarea name="content" id="content"></textarea>
+                        <label for="content">Type you text here</label>
+                        <textarea disabled="disabled" name="content" id="content"></textarea>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-    
+
+    <!-- Modal Structure -->
+    <div id="modal-new-text" class="modal">
+        <div class="modal-content">
+            <h4>Set Data</h4>
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="title" type="text" class="validate">
+                            <label for="title">Title</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="time" type="number" class="validate">
+                            <label for="time">Select time (seconds)</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" id="modal-submit" class=" modal-action modal-close waves-effect waves-green btn-flat">Start!</a>
+            <a href="#!" id="modal-cancel" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel!</a>
+        </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="modal-choose-data" class="modal">
+        <div class="modal-content">
+            <h4>Choose file</h4>
+            <ul class="collection" id="choose-data-collection">
+
+            </ul>
+        </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="modal-confirmation-delete" class="modal">
+        <div class="modal-content">
+            <h4>Do you want to delete <span id="delete-title"></span>?</h4>
+        </div>
+        <div class="modal-footer">
+            <a href="#" id="modal-confirmation-submit" class=" modal-action modal-close waves-effect waves-green btn-flat">OK</a>
+            <a href="#" id="modal-confirmation-cancel" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+        </div>
+    </div>
+
     <script src="js/jquery-2.2.3.js"></script>
     <script src="js/jquery.color.plus-names-2.1.2.js"></script>
     <script type="text/javascript" src="js/bin/materialize.min.js"></script>
     <script>
+        $('#modal-new-text').openModal();
         window.isTextBoxChanged = true;
         window.timerToDelete = 0;
         window.timeToEndWriting = 60;
         window.currTime = 0;
-        window.setTimerInNavBar = function(time) {
+        window.setTimerInNavBar = function (time) {
             minutes = Math.floor(time / 600);
             seconds = Math.ceil(Math.floor(time / 10) % 60);
             if (minutes < 10) {
@@ -58,27 +116,117 @@
             $('#timer_minutes').text(minutes);
             $('#timer_seconds').text(seconds);
         }
-        main = function() {
+
+        loadData = function () {
+            if (!localStorage.getItem('data')) {
+                localStorage.setItem('data', "{}");
+            }
+            window.textData = JSON.parse(localStorage.getItem('data'));
+            for (var key in window.textData) {
+                var $text = $('<li class="collection-item"><div>' + key +
+                    '<a href="#" data-title-text="' + key + '" class="secondary-content delete-text"><i class="material-icons">delete</i></a>' +
+                    '<a href="#" data-title-text="' + key +
+                    '" class="secondary-content open-text"><i class="material-icons">open_in_browser</i></a>' +
+                    '</div></li>');
+                $('#choose-data-collection').append($text);
+            }
+        }
+
+        saveData = function () {
+            localStorage.setItem('data', JSON.stringify(window.textData));
+        }
+
+        main = function () {
+            loadData();
+
+            $('#modal-new-text').openModal();
+
+            $('#btn-new-data').click(function (e) {
+                $('#modal-new-text').openModal();
+            });
+
+            $('#btn-see-data').click(function (e) {
+                $('#modal-choose-data').openModal();
+                return false;
+            });
+            $('#modal-choose-data .open-text').click(function (e) {
+                var key = $(this).attr('data-title-text');
+                
+                $('#content').val(window.textData[key]);
+                $('#text-title').text(key);
+                $('#modal-choose-data').closeModal();
+                
+                return false;
+            });
+
+            $('#modal-choose-data .delete-text').click(function (e) {
+                var key = $(this).attr('data-title-text');
+                
+                $('#delete-title').text(key);
+                $('#delete-title').attr('data-delete-title', key);
+                $('#modal-choose-data').closeModal();
+                $('#modal-confirmation-delete').openModal();
+                
+                return false;
+            });
+
+            $('#modal-confirmation-submit').click(function (e) {
+                var key = $('#delete-title').attr('data-delete-title');
+                
+                delete window.textData[key];
+                saveData();
+                loadData();
+                
+                $('#modal-confirmation-submit').closeModal();
+                
+                return true;
+            });
+
+            $('#modal-confirmation-cancel').click(function (e) {
+                return false;
+            });
+
+            $('#modal-submit').click(function (e) {
+                $('#content').removeAttr('disabled');
+
+                window.textTitle = $('#title').val();
+                $('title-text').text(window.textTitle);
+                window.timeToEndWriting = parseInt($('#time').val());
+                $('#text-title').text(window.textTitle);
+
+                $('#content').val('');
+
+                main_run();
+            });
+        }
+
+        main_run = function () {
             window.isCalled = false;
-            window.animateFading = function() {
+
+            window.animateFading = function () {
                 //console.log("Animating!");
                 $('#content').animate({
-                    color: $.Color({ alpha: 0 })
+                    color: $.Color({
+                        alpha: 0
+                    })
                 }, 4000);
             }
-            window.resetAnimation = function() {
+
+            window.resetAnimation = function () {
                 $('#content').css("color", $.Color($('#content'), 'color').alpha(1));
                 window.isCalled = false;
+
                 console.log("Reset animating!");
             }
-            //clearInterval(timeoutHandle);
-            window.textAreaHandle = window.setInterval(function() {
+
+            window.textAreaHandle = window.setInterval(function () {
                 //console.log(isTextBoxChanged);
                 if (window.timerToDelete >= 10 && !window.isCalled) {
                     //console.log("Prepare animating!");
                     window.animateFading();
                     window.isCalled = true;
                 }
+
                 if (!window.isTextBoxChanged && window.timerToDelete >= 50) {
                     //console.log('Ouch!');
                     $('#content').val('');
@@ -86,33 +234,50 @@
                     window.resetAnimation();
                     window.currTime = 0;
                 }
+
                 window.timerToDelete++;
             }, 100);
-            
-            $('#content').keypress(function(e) {
+
+            $('#content').keypress(function (e) {
                 //console.log(isTextBoxChanged);
                 window.isTextBoxChanged = true;
                 window.timerToDelete = 0;
                 //console.log(e.keyCode);
+
                 $('#content').stop();
                 window.resetAnimation();
             });
-            
-            window.changeFlagHandle = setInterval(function(){ isTextBoxChanged = false; }, 100);
-            window.timeOutHandle = setInterval(function() {
+
+            window.changeFlagHandle = setInterval(function () {
+                isTextBoxChanged = false;
+            }, 100);
+
+            window.timeOutHandle = setInterval(function () {
                 var remainingTime = window.timeToEndWriting * 10 - window.currTime;
+
                 $('#progress-texting').css({
                     width: (remainingTime / (window.timeToEndWriting * 10) * 100) + '%'
                 });
+
                 setTimerInNavBar(remainingTime);
+
                 if (window.currTime >= window.timeToEndWriting * 10) {
                     clearInterval(window.textAreaHandle);
                     clearInterval(window.changeFlagHandle);
+
                     $('#content').stop();
-                    $('#content').attr('disabled','disabled');
+                    $('#content').attr('disabled', 'disabled');
                     $("#done").css('display', 'block');
+
                     window.resetAnimation();
+
                     clearInterval(window.timeOutHandle);
+
+                    console.log(window.textData);
+                    window.textData[window.textTitle] = $('#content').val();
+                    console.log(window.textData);
+                    window.saveData();
+
                     console.log("stop!");
                 }
                 window.currTime++;
@@ -121,4 +286,5 @@
         $(document).ready(main);
     </script>
 </body>
+
 </html>
