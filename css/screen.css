@@ -5022,13 +5022,13 @@ nav .input-field label.active {
 }
 
 /* line 154, ../sass/components/_navbar.scss */
-.navbar-fixed {
+.navbar-fixed, .timer {
   position: relative;
   height: 56px;
   z-index: 998;
 }
 /* line 159, ../sass/components/_navbar.scss */
-.navbar-fixed nav {
+.navbar-fixed nav, .timer nav {
   position: fixed;
 }
 
@@ -5040,7 +5040,7 @@ nav .input-field label.active {
   }
 
   /* line 168, ../sass/components/_navbar.scss */
-  .navbar-fixed {
+  .navbar-fixed, .timer {
     height: 64px;
   }
 }
@@ -9126,39 +9126,70 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 /* line 11, ../sass/screen.scss */
 nav {
   color: #eeeeee;
+  font-size: 14pt;
 }
 
-/* line 15, ../sass/screen.scss */
+/* line 16, ../sass/screen.scss */
 #content {
   color: #eeeeee;
   resize: none;
   height: 100vh;
 }
-/* line 20, ../sass/screen.scss */
+/* line 21, ../sass/screen.scss */
 #content, #content:focus {
   border: 0 none #FFF;
   outline: none;
   overflow: hidden;
 }
 
-/* line 31, ../sass/screen.scss */
+/* line 28, ../sass/screen.scss */
+.hide {
+  display: none;
+}
+
+/* line 32, ../sass/screen.scss */
+#navbar-main {
+  z-index: 0;
+}
+
+/* line 35, ../sass/screen.scss */
+.timer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  padding: 0 15px;
+  z-index: 10;
+  color: #eeeeee;
+  font-size: 14pt;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* line 51, ../sass/screen.scss */
+.timer div {
+  flex: 1;
+}
+
+/* line 60, ../sass/screen.scss */
 .no-warning {
   background-color: #bdbdbd;
 }
 
-/* line 35, ../sass/screen.scss */
+/* line 64, ../sass/screen.scss */
 #done {
   display: none;
 }
 
-/* line 38, ../sass/screen.scss */
+/* line 67, ../sass/screen.scss */
 a.brand-logo {
   display: inline-block;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
 }
 
-/* line 44, ../sass/screen.scss */
+/* line 73, ../sass/screen.scss */
 #nav-mobile li {
   display: inline-block;
   margin-left: 0.5rem;

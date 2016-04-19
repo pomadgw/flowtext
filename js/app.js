@@ -39,6 +39,7 @@ saveData = function () {
 }
 
 main = function () {
+    $('#content').val('');
     loadData();
     $('#modal-new-text').openModal();
 
@@ -99,7 +100,7 @@ main = function () {
     });
 
     $('#modal-new-text-submit').click(function (e) {
-        $('#content').removeAttr('disabled');
+        $('#content').removeAttr('readonly');
 
         window.textTitle = $('#title').val();
         $('title-text').text(window.textTitle);
@@ -115,6 +116,7 @@ main = function () {
 main_run = function () {
     $('#content').focus();
     window.isCalled = false;
+    $('#navbar-main').animate({ height: 'toggle', opacity: 'toggle' }, 'slow');; //.addClass('hide')
     $('#progress-texting').css("background-color", window.progressColor);
 
     window.animateFading = function () {
@@ -155,8 +157,8 @@ main_run = function () {
         window.timerToDelete++;
     }, 100);
 
-    $('#content').keypress(function (e) {
-        //console.log(isTextBoxChanged);
+    $('#content').bind('input keyup', function (e) {
+        console.log(isTextBoxChanged);
         window.isTextBoxChanged = true;
         window.timerToDelete = 0;
         //console.log(e.keyCode);
@@ -183,11 +185,12 @@ main_run = function () {
             clearInterval(window.changeFlagHandle);
 
             $('#content').stop();
-            $('#content').attr('disabled', 'disabled');
+            $('#content').attr('readonly', 'readonly');
             $("#done").css('display', 'block');
 
             window.resetAnimation();
-
+            
+            $('#navbar-main').animate({ height: 'toggle', opacity: 'toggle' }, 'slow');;
             clearInterval(window.timeOutHandle);
 
             console.log(window.textData);

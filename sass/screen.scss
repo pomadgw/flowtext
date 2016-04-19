@@ -11,6 +11,7 @@
 nav {
     @extend .grey, .darken-3;
     color: map-get($grey, 'lighten-3');
+    font-size: 14pt;
 }
 #content {
     @extend .flow-text;
@@ -21,6 +22,34 @@ nav {
         border: 0 none #FFF;
         outline: none;
         overflow: hidden;
+    }
+}
+
+.hide {
+    display: none;
+}
+
+#navbar-main {
+    z-index: 0;
+}
+.timer {
+    @extend .navbar-fixed;
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    padding: 0 15px;
+    z-index: 10;
+    color: rgb(238, 238, 238);
+    font-size: 14pt;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    div {
+        flex: 1;
     }
 }
 
