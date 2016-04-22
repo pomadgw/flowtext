@@ -18,7 +18,7 @@
         <nav class="z-depth-0">
             <div class="nav-wrapper">
                 <!--                <a href="#" class="brand-logo">Flowtext</a>-->
-                <ul id="nav-mobile" class="right">
+                <ul id="nav-mobile" class="left">
                     <li><a href="#" id="btn-new-data">New Text</a>
                     </li>
                     <li><a href="#" id="btn-see-data">Open Text</a>
@@ -42,13 +42,13 @@
             <span id="timer_minutes">00</span>:<span id="timer_seconds">00</span>
         </div>
     </div>
-        <h1 id="text-title" class="center-align grey-text text-lighten-3">Apparently, you don't type anything yet!</h1>
+        <h1 id="text-title" class="center-align grey-text text-lighten-3">No title here!</h1>
         <div class="row">
             <form class="col s12">
                 <div class="row">
                     <div class="input-fields col s12">
                         <label for="content">Type you text here</label>
-                        <textarea readonly="readonly" name="content" id="content">Click "New Text"</textarea>
+                        <textarea placeholder="Start typing by click New Text above!" readonly="readonly" name="content" id="content">Click "New Text"</textarea>
                     </div>
                 </div>
             </form>
@@ -117,6 +117,7 @@
     <script src="js/jquery-ui.js"></script>
     <script type="text/javascript" src="js/bin/materialize.min.js"></script>
     <script src="js/sha256.js"></script>
+    <script src="js/autosize.js"></script>
     <script src="js/app.js">
     </script>
 </body>

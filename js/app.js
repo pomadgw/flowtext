@@ -60,6 +60,8 @@ main = function () {
         var key = $(this).attr('data-title-text');
 
         $('#content').val(window.textData[key]['content']);
+        autosize($('#content'));
+        
         $('#text-title').text(window.textData[key]['title']);
         $('#modal-choose-data').closeModal();
 
@@ -114,7 +116,10 @@ main = function () {
 }
 
 main_run = function () {
+    $('#content').attr("placeholder", "Keep typing!");
+    autosize($('#content'));
     $('#content').focus();
+    
     window.isCalled = false;
     $('#navbar-main').animate({ height: 'toggle', opacity: 'toggle' }, 'slow');; //.addClass('hide')
     $('#progress-texting').css("background-color", window.progressColor);
@@ -161,6 +166,7 @@ main_run = function () {
         console.log(isTextBoxChanged);
         window.isTextBoxChanged = true;
         window.timerToDelete = 0;
+        autosize($('#content'));
         //console.log(e.keyCode);
 
         $('#content').stop();
